@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:47:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/19 17:00:37 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/11/19 17:27:25 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,5 @@ public:
     void addNumber(unsigned int num);
     unsigned int shortestSpan();
     unsigned int longestSpan();
+    void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
 };

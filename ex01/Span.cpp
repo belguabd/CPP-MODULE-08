@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:52:35 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/19 17:07:31 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/11/19 18:12:54 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void Span::addNumber(unsigned int num)
 
 unsigned int Span::shortestSpan()
 {
-    
+
     if (_N < 2)
         throw std::length_error("The container must have at least two elements.");
-    
+
     sort(vec.begin(), vec.end());
     unsigned int shortest = std::numeric_limits<int>::max();
     for (std::vector<int>::iterator it = vec.begin(); it != vec.end() - 1; ++it)
@@ -51,4 +51,15 @@ unsigned int Span::longestSpan()
     unsigned int longest = vec.back() - vec.front();
 
     return (longest);
+}
+
+void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
+{
+    unsigned int range = std::distance(begin, end);
+    if (_length + range < vec.size())
+    {
+        for (std::vector<int>::iterator it = begin; it != end; it++)
+            vec.push_back(*it);
+        _length++;
+    }
 }
