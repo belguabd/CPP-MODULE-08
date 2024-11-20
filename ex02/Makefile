@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:33:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/11/19 18:34:00 by belguabd         ###   ########.fr        #
+#    Updated: 2024/11/20 14:06:01 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@
 
 FLAGS=c++ -Wall -Wextra -Werror -std=c++98
 
-NAME=span
+NAME=mutated_abomination
 
-SRC=main.cpp Span.cpp
+SRC=main.cpp 
 
 OBJ=$(SRC:.cpp=.o)
 
