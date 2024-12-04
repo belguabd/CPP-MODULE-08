@@ -6,7 +6,7 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:47:36 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/19 17:27:25 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:35:00 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,28 @@
 class Span
 {
 private:
-    std::vector<int> vec;
-    size_t _N;
-    static size_t _length;
+    std::vector<int> _numbers;
+    size_t _size;
 
 public:
+    Span();
+    Span(const Span &src);
+    Span &operator=(const Span &src);
+    ~Span();
+
     Span(unsigned int N);
     void addNumber(unsigned int num);
     unsigned int shortestSpan();
     unsigned int longestSpan();
-    void addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+    template <typename iterator>
+    void addRange(iterator begin, iterator end);
 };
+
+template <typename iterator>
+void Span::addRange(iterator start, iterator end)
+{
+    unsigned int range = std::distance(start, end);
+    if ((_numbers.size() + range) > _size)
+        throw std::length_error("The span is full");
+    _numbers.insert(_numbers.end(), start, end);
+}

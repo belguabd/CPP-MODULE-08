@@ -6,37 +6,56 @@
 /*   By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:52:35 by belguabd          #+#    #+#             */
-/*   Updated: 2024/11/19 18:12:54 by belguabd         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:15:01 by belguabd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
 
-size_t Span::_length = 0;
+/*
+** ------------------------------- CONSTRUCTOR -------------------------------- 
+*/
 
-Span::Span(unsigned int N) : vec(N), _N(N) {};
+Span::Span() : _size(0) {};
+Span::Span(const Span &src) : _numbers(src._numbers), _size(src._size) {};
+Span &Span::operator=(const Span &src)
+{
+    if (this != &src)
+    {
+        _numbers = src._numbers;
+        _size = src._size;
+    }
+    return *this;
+};
+Span::~Span() {};
+
+/*
+** --------------------------------- METHODS ----------------------------------
+*/
+
+Span::Span(unsigned int N) : _size(N) {};
 
 void Span::addNumber(unsigned int num)
 {
-    if (_length >= _N)
+
+    if (_numbers.size() >= _size)
         throw std::length_error("The span is full");
-    vec.push_back(num);
-    _length++;
+    _numbers.push_back(num);
 };
 
 unsigned int Span::shortestSpan()
 {
 
-    if (_N < 2)
+    if (_size < 2)
         throw std::length_error("The container must have at least two elements.");
-
-    sort(vec.begin(), vec.end());
-    unsigned int shortest = std::numeric_limits<int>::max();
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end() - 1; ++it)
+    sort(_numbers.begin(), _numbers.end());
+    std::vector<int>::iterator it = _numbers.begin();
+    unsigned int shortest = *(it + 1) - *it;
+    it++;
+    for (; it != _numbers.end() - 1; ++it)
     {
-        unsigned int diff = static_cast<unsigned int>(*(it + 1) - *it);
-        if (diff < shortest)
-            shortest = diff;
+        if (shortest > static_cast<unsigned int>(*(it + 1) - (*it)))
+            shortest = static_cast<unsigned int>(*(it + 1) - (*it));
     }
     return (shortest);
 }
@@ -44,22 +63,12 @@ unsigned int Span::shortestSpan()
 unsigned int Span::longestSpan()
 {
 
-    if (vec.size() < 2)
+    if (_numbers.size() < 2)
         throw std::length_error("The container must have at least two elements.");
-    sort(vec.begin(), vec.end());
+    sort(_numbers.begin(), _numbers.end());
 
-    unsigned int longest = vec.back() - vec.front();
+    unsigned int longest = _numbers.back() - _numbers.front();
 
     return (longest);
 }
 
-void Span::addRange(std::vector<int>::iterator begin, std::vector<int>::iterator end)
-{
-    unsigned int range = std::distance(begin, end);
-    if (_length + range < vec.size())
-    {
-        for (std::vector<int>::iterator it = begin; it != end; it++)
-            vec.push_back(*it);
-        _length++;
-    }
-}

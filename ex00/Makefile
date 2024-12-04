@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:33:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/11/19 11:26:46 by belguabd         ###   ########.fr        #
+#    Updated: 2024/12/02 12:38:03 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ all :$(NAME)
 
 $(NAME):$(OBJ)	
 	$(FLAGS)  $(OBJ) -o $(NAME)
-%.o:%.cpp 
+%.o:%.cpp  Easyfind.hpp
 	$(FLAGS) -c $< -o $@
 
 

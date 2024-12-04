@@ -6,7 +6,7 @@
 #    By: belguabd <belguabd@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 10:33:12 by belguabd          #+#    #+#              #
-#    Updated: 2024/11/19 18:34:00 by belguabd         ###   ########.fr        #
+#    Updated: 2024/12/02 18:10:31 by belguabd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ all :$(NAME)
 
 $(NAME):$(OBJ)	
 	$(FLAGS)  $(OBJ) -o $(NAME)
-%.o:%.cpp 
+%.o:%.cpp Span.hpp
 	$(FLAGS) -c $< -o $@
 
 
